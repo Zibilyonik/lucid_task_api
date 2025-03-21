@@ -11,10 +11,11 @@ from datetime import datetime, timedelta
 import jwt
 import bcrypt
 
-# Should be stored in environment variables in production
-SECRET_KEY = os.getenv(
-    "JWT_SECRET_KEY", "sludajf4ip32urt038uejfminposk-2398u-90-disnmi"
-)
+SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+if not SECRET_KEY:
+    logging.warning("JWT_SECRET_KEY not found in .env. Using default key (NOT SECURE)")
+    SECRET_KEY = "FnbXbrysHdvgoP3to8JoAPZf7/SFWdEcG6lSXZbAHF4="
+
 ALGORITHM = "HS256"
 
 
@@ -77,6 +78,6 @@ def decode_token(token: str):
     except jwt.InvalidTokenError:
         logging.error("Invalid token")
         return None
-    except Exception as e:
-        logging.error(f"Unexpected error decoding token: {str(e)}")
+    except (TypeError, ValueError) as e:
+        logging.error("Error in token format: %s", e)
         return None

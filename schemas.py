@@ -6,7 +6,7 @@ incoming requests and formatting outgoing responses.
 """
 
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Annotated
 from pydantic import BaseModel, EmailStr, constr, field_validator
 
 
@@ -20,7 +20,7 @@ class UserCreate(BaseModel):
     """
 
     email: EmailStr
-    password: constr(min_length=6)
+    password: Annotated[str, constr(min_length=6)]
 
     @field_validator("email")
     def email_must_be_valid(self, v):
@@ -67,7 +67,7 @@ class PostCreate(BaseModel):
         text: Post content, 1MB max size
     """
 
-    text: constr(min_length=1, max_length=1000000)  # 1MB limit
+    text: Annotated[str, constr(min_length=1, max_length=1000000)]  # 1MB limit
 
     @field_validator("text")
     def text_not_too_long(self, v):
