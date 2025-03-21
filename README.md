@@ -94,7 +94,7 @@ Delete a post by ID.
 
 3. **Install dependencies**:
    ```
-   pip install fastapi uvicorn sqlalchemy pydantic pyjwt bcrypt mysql-connector-python
+   pip install -r requirements.txt
    ```
 
 4. **Run the application**:
