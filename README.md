@@ -97,21 +97,12 @@ Delete a post by ID.
    pip install fastapi uvicorn sqlalchemy pydantic pyjwt bcrypt mysql-connector-python
    ```
 
-4. **Set environment variables** (optional but recommended for production):
-   ```
-   export JWT_SECRET_KEY="your-secret-key"
-   export DB_USER="database-user"
-   export DB_PASSWORD="database-password"
-   export DB_HOST="database-host"
-   export DB_NAME="database-name"
-   ```
-
-5. **Run the application**:
+4. **Run the application**:
    ```
    uvicorn main:app --reload
    ```
 
-6. **Access the API documentation**:
+5. **Access the API documentation**:
    Open your browser and navigate to `http://localhost:8000/docs`
 
 ## Usage Examples
